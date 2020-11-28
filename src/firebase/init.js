@@ -1,5 +1,6 @@
-import firebase from "firebase";
-import firestore from "firebase/firestore";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 
 var firebaseConfig = {
   apiKey: "AIzaSyALK4k7AaExcO-K_FamSousBA9I5vhF85Y",
@@ -12,7 +13,10 @@ var firebaseConfig = {
   measurementId: "G-C4GSBHWL6V"
 };
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+firebase.initializeApp(firebaseConfig);
+firebase.firestore().settings({ timestampsInSnapshots: true });
 
-export default firebaseApp.firestore();
+export default firebase;
+
+// export const db = firebaseApp.database();
+// export const namesRef = db.ref("patients");

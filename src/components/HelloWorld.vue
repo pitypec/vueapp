@@ -24,7 +24,15 @@ export default {
     };
   },
   methods: {
-    setup() {}
+    async loadUser() {
+      datas.map(data => {
+        http
+          .post("https://vueapp-90cf0.firebaseio.com/patients.json", { data })
+          .then(data => {
+            console.log(data);
+          });
+      });
+    }
   }
   // mounted() {
   //   datas.map(data => {

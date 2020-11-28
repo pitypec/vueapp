@@ -5,10 +5,14 @@
 </template>
 
 <script>
+import { namesRef } from "../firebase/init";
+import axios from "axios";
 import { Chart } from "highcharts-vue";
 import Highcharts from "highcharts";
 import Exporting from "highcharts/modules/exporting";
 Exporting(Highcharts);
+
+import { mapActions } from "vuex";
 
 export default {
   name: "Chart",
@@ -47,7 +51,7 @@ export default {
         yAxis: {
           min: 0,
           title: {
-            text: "Rainfall (mm)"
+            text: "Blood Group"
           }
         },
         tooltip: {
@@ -104,7 +108,20 @@ export default {
         ]
       }
     };
+  },
+
+  methods: {
+    ...mapActions({
+      getPatients: "auth/getPatients"
+    }),
+    getUser() {
+      this.getPatients();
+    }
   }
+
+  // mounted() {
+  //   this.getUser();
+  // }
 };
 </script>
 
